@@ -1,0 +1,133 @@
+.vendor-details {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .vendor-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-direction: column;
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+  
+  .vendor-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    @media (min-width: 768px) {
+      width: 300px;
+      height: 300px;
+    }
+  
+    &.placeholder {
+      background-color: var(--primary-color);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+  }
+  
+  .vendor-info {
+    flex: 1;
+  
+    h1 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+  
+    .contact-person {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin: 0.5rem 0;
+    }
+  
+    .contact-methods {
+      p {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0.5rem 0;
+  
+        i {
+          font-size: 1.2rem;
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+  
+  .vendor-content {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  
+    @media (min-width: 992px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .address-section, .contract-section, .products-section {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  
+    .stars {
+      display: flex;
+      gap: 0.25rem;
+  
+      .star {
+        color: #ddd;
+        font-style: normal;
+  
+        &.filled {
+          color: #ffc107;
+        }
+  
+        &::before {
+          content: '★';
+        }
+      }
+    }
+  }
+  
+  .products-section {
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+  
+      li {
+        padding: 0.5rem;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+      }
+    }
+  }

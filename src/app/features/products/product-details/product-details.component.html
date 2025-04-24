@@ -1,0 +1,26 @@
+<div class="product-details">
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else if (product) {
+      <!-- Other product details sections... -->
+  
+      @if (product.instructions && instructionLanguages.length > 0) {
+        <div class="instructions-section">
+          <h2>Instructions</h2>
+          <div class="language-selector">
+            @for (lang of instructionLanguages; track lang) {
+              <button 
+                (click)="changeLanguage(lang)"
+                [class.active]="activeLanguage === lang"
+              >
+                {{ lang.toUpperCase() }}
+              </button>
+            }
+          </div>
+          <div class="instruction-content">
+            {{ product.instructions[activeLanguage] }}
+          </div>
+        </div>
+      }
+    }
+  </div>

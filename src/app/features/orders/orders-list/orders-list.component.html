@@ -1,0 +1,44 @@
+<div class="orders-container">
+    <div class="orders-header">
+      <h1>Orders</h1>
+      <app-search (search)="onSearch($event)"></app-search>
+      <button class="new-order-button" routerLink="/orders/new">+ New Order</button>
+    </div>
+  
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else {
+      <div class="orders-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of filteredOrders; track order.id) {
+              <tr>
+                <td>{{ order.orderNumber }}</td>
+                <td>{{ order.date | date }}</td>
+                <td>{{ order.customer.name }}</td>
+                <td>
+                  <span [class]="getStatusClass(order.status)">
+                    {{ order.status | titlecase }}
+                  </span>
+                </td>
+                <td>{{ order.totalAmount | currency }}</td>
+                <td>
+                  <a [routerLink]="['/orders', order.id]" class="view-button">View</a>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>

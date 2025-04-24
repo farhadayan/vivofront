@@ -1,0 +1,128 @@
+<div class="employee-list-container">
+  <!-- Loading Indicator -->
+  @if (isLoading) {
+    <div class="loading-overlay">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (error) {
+    <div class="error-message mat-elevation-z2">
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ error }}</span>
+      <button mat-icon-button (click)="error = null">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  }
+
+  <!-- Toolbar -->
+  <div class="toolbar mat-elevation-z2">
+    <button mat-raised-button
+      (click)="addEditEmployee(false)">
+      <mat-icon>add</mat-icon>
+      Add Employee
+    </button>
+    
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search employees">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- Employee Table -->
+  <div class="table-container mat-elevation-z2">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let employee">
+          <div class="employee-name" (click)="navigateToDetails(employee.id)">
+            <img [src]="employee.imageUrl || 'assets/images/avatar.jpg'" 
+                 [class]="getImageSizeClass()" 
+                 alt="Employee photo">
+            {{ employee.name }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+        <td mat-cell *matCellDef="let employee">{{ employee.position }}</td>
+      </ng-container>
+
+      <!-- Department Column -->
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+        <td mat-cell *matCellDef="let employee">{{ employee.department }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let employee">
+          <a href="mailto:{{employee.email}}" class="email-link">{{ employee.email }}</a>
+        </td>
+      </ng-container>
+
+      <!-- Phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <td mat-cell *matCellDef="let employee">
+          <a href="tel:{{employee.phone}}" class="phone-link">{{ employee.phone }}</a>
+        </td>
+      </ng-container>
+
+      <ng-container stickyEnd matColumnDef="actions">
+        <th class="actions-column" mat-header-cell *matHeaderCellDef></th>
+        <td class="actions-column" mat-cell *matCellDef="let element">
+          <div class="button-group">
+            <button
+              (click)="$event.stopPropagation()"
+              [matMenuTriggerFor]="rowActions"
+              class="icon"
+              >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+  
+            <mat-menu class="context" #rowActions>
+              <mat-action-list>
+  
+                <button mat-list-item (click)="addEditEmployee(true,element)">
+                  <mat-icon>edit</mat-icon>
+                  Edit
+                </button>
+                <button mat-list-item (click)="deleteEmployee(element)"
+                [disabled]="!dataSource.data.length"
+                >
+                  <mat-icon>delete</mat-icon>
+                  Delete
+                </button>
+              </mat-action-list>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          [class.row-selected]="selectedRows.has(row)"
+          (click)="toggleSelection(row)"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" 
+                   showFirstLastButtons
+                   aria-label="Select page of employees">
+    </mat-paginator>
+
+    @if (dataSource.filteredData.length === 0 && !isLoading) {
+      <div class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No employees found matching your criteria</p>
+      </div>
+    }
+  </div>
+</div>

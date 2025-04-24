@@ -1,0 +1,84 @@
+
+<div class="employee-form">
+  <h1>{{dialogData.isEditMode?'Update':'Create'}} Employee</h1>
+  <form [formGroup]="employeeForm">
+    <app-labelled-component label="Image">
+      <mat-form-field appearance="outline" >
+        <input type="text" matInput formControlName="imageUrl">
+      </mat-form-field>
+    </app-labelled-component>
+
+    <div class="same-row">
+    <app-labelled-component label="Name">
+      <mat-form-field appearance="outline" class="">
+        <input type="text" matInput formControlName="name">
+      </mat-form-field>
+    </app-labelled-component>
+    
+    <app-labelled-component label="Position">
+      <mat-form-field appearance="outline" >
+        <input type="text" matInput formControlName="position">
+      </mat-form-field>
+    </app-labelled-component>
+    <app-labelled-component label="Department">
+      <mat-form-field appearance="outline" >
+        
+        <input type="text" matInput formControlName="department">
+      </mat-form-field>
+    </app-labelled-component> 
+    
+    <app-labelled-component label="Email">
+      <mat-form-field appearance="outline" >
+        
+        <input type="text" matInput formControlName="email" type="email">
+      </mat-form-field>
+    </app-labelled-component>
+    <app-labelled-component label="Phone">
+      <mat-form-field appearance="outline" >
+        
+        <input type="text" matInput formControlName="phone">
+      </mat-form-field>
+    </app-labelled-component>
+
+    <app-labelled-component label="House">
+          <mat-form-field appearance="outline" >
+        
+        <input type="text" matInput formControlName="house">
+      </mat-form-field>
+    </app-labelled-component>
+    
+    <app-labelled-component label="Street">
+      <mat-form-field appearance="outline" >
+        <input type="text" matInput formControlName="street">
+      </mat-form-field>
+    </app-labelled-component>
+    <app-labelled-component label="ZIP">    
+      <mat-form-field appearance="outline" >
+        <input type="text" matInput formControlName="zip">
+      </mat-form-field>
+    </app-labelled-component>
+    
+    <app-labelled-component label="Position">
+      <mat-form-field appearance="outline" >
+        <input type="text" matInput formControlName="state">
+      </mat-form-field>
+    </app-labelled-component>
+    
+    <app-labelled-component label="Hire date">
+      <mat-form-field appearance="outline" >
+        <input type="date" matInput formControlName="hireDate" type="date">
+      </mat-form-field>
+    </app-labelled-component>
+  </div>
+    
+    <div class="buttons">
+      <button mat-raised-button [disabled]="!employeeForm.valid" (click)="updateEmployee()">
+        {{ dialogData.isEditMode ? 'Update' : 'Create' }} Employee
+      </button>
+      <button mat-raised-button  (click)="cancel()">
+        Cancel
+      </button>
+  </div>
+
+    </form>
+</div>

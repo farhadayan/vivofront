@@ -1,0 +1,33 @@
+<div class="vendors-container">
+  <div class="orders-header">
+    <h1>Vendors</h1>
+    <app-search (search)="onSearch($event)"></app-search>
+    <button class="new-vendor-button" routerLink="/vendors/new">+ New Vendor</button>
+  </div>
+    
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else {
+      <div class="vendors-grid">
+        @for (vendor of vendors; track vendor.id) {
+          <div class="vendor-card">
+            <a [routerLink]="['/vendors', vendor.id]">
+              @if (vendor.imageUrl) {
+                <img [src]="vendor.imageUrl" [alt]="vendor.name" class="vendor-image">
+              } @else {
+                <div class="vendor-image placeholder">
+                  {{ vendor.name.charAt(0) }}
+                </div>
+              }
+              <div class="vendor-info">
+                <h3>{{ vendor.name }}</h3>
+                <p>{{ vendor.contactPerson }}</p>
+                <p>{{ vendor.email }}</p>
+                <p>{{ vendor.phone }}</p>
+              </div>
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </div>

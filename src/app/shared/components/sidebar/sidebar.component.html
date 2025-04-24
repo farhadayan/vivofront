@@ -1,0 +1,53 @@
+<nav [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <div class="logo" (click)="redirectDashboard()">
+      <img src="/assets/images/logo.png" alt="Logo"/>
+      <h2 *ngIf="!isCollapsed">{{ configService.getConfig().appName }}</h2>
+    </div>
+   </div>
+   <ng-container>
+   <button mat-icon-button class="menu-toggle" (click)="toggleCollapse()">
+    <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+   </button>
+    <ul>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active" (click)="isMobileView && toggleCollapse()">
+          <i class="material-icons">dashboard</i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      @if (activeFeatures.employees) {
+        <li>
+          <a routerLink="/employees" routerLinkActive="active" (click)="isMobileView && toggleCollapse()">
+            <i class="icon-employees"></i>
+            <span>Employees</span>
+          </a>
+        </li>
+      }
+      @if (activeFeatures.products) {
+        <li>
+          <a routerLink="/products" routerLinkActive="active" (click)="isMobileView && toggleCollapse()">
+            <i class="icon-products"></i>
+            <span>Products</span>
+          </a>
+        </li>
+      }
+      @if (activeFeatures.orders) {
+        <li>
+          <a routerLink="/orders" routerLinkActive="active" (click)="isMobileView && toggleCollapse()">
+            <i class="icon-orders"></i>
+            <span>Orders</span>
+          </a>
+        </li>
+      }
+      @if (activeFeatures.vendors) {
+        <li>
+          <a routerLink="/vendors" routerLinkActive="active" (click)="isMobileView && toggleCollapse()">
+            <i class="icon-vendors"></i>
+            <span>Vendors</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </ng-container>
+  </nav>

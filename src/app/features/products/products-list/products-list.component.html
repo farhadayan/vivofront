@@ -1,0 +1,32 @@
+<div class="products-container">
+    <div class="orders-header">
+      <h1>Products</h1>
+      <app-search (search)="onSearch($event)"></app-search>
+      <button class="add-button" routerLink="/products/new">+ Add Product</button>
+    </div>
+    
+  
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else {
+      <div class="products-grid">
+        @for (product of filteredProducts; track product.id) {
+          <div class="product-card">
+            <a [routerLink]="['/products', product.id]">
+              <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p class="category">{{ product.category }}</p>
+                <div class="price-stock">
+                  <span class="price">{{ product.price | currency }}</span>
+                  <span class="stock" [class.low-stock]="product.quantity < 10">
+                    {{ product.quantity }} in stock
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </div>

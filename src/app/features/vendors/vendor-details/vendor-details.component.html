@@ -1,0 +1,68 @@
+<div class="vendor-details">
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else if (vendor) {
+      <div class="vendor-header">
+        @if (vendor.imageUrl) {
+          <img [src]="vendor.imageUrl" [alt]="vendor.name" class="vendor-image">
+        } @else {
+          <div class="vendor-image placeholder">
+            {{ vendor.name.charAt(0) }}
+          </div>
+        }
+        <div class="vendor-info">
+          <h1>{{ vendor.name }}</h1>
+          <p class="contact-person">{{ vendor.contactPerson }}</p>
+          <div class="contact-methods">
+            <p><i class="icon-email"></i> {{ vendor.email }}</p>
+            <p><i class="icon-phone"></i> {{ vendor.phone }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="vendor-content">
+        <div class="address-section">
+          <h2>Address</h2>
+          <address>
+            {{ vendor.address.street }}<br>
+            {{ vendor.address.city }}, {{ vendor.address.state }} {{ vendor.address.zip }}<br>
+            {{ vendor.address.country }}
+          </address>
+        </div>
+  
+        <div class="contract-section">
+          <h2>Contract</h2>
+          <p>
+            <strong>Start Date:</strong> {{ vendor.contractStartDate | date }}<br>
+            @if (vendor.contractEndDate) {
+              <strong>End Date:</strong> {{ vendor.contractEndDate | date }}
+            }
+          </p>
+          @if (vendor.paymentTerms) {
+            <p><strong>Payment Terms:</strong> {{ vendor.paymentTerms }}</p>
+          }
+          @if (vendor.rating) {
+            <div class="rating">
+              <strong>Rating:</strong>
+              <div class="stars">
+                @for (star of [1,2,3,4,5]; track star) {
+                  <i class="star" [class.filled]="star <= vendor.rating"></i>
+                }
+              </div>
+            </div>
+          }
+        </div>
+  
+        @if (vendor.productsSupplied && vendor.productsSupplied.length > 0) {
+          <div class="products-section">
+            <h2>Products Supplied</h2>
+            <ul>
+              @for (product of vendor.productsSupplied; track product) {
+                <li>{{ product }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    }
+  </div>

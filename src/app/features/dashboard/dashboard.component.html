@@ -1,0 +1,64 @@
+<div class="dashboard">
+    <h1>Welcome to {{ appName }}</h1>
+    
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else {
+      <div class="stats-grid">
+        <ng-container *ngIf="stats$ | async as stats">
+
+        @if (features.employees) {
+          <div class="stat-card" routerLink="/employees">
+            <h3>Employees</h3>
+            <p class="count">{{ stats.employees }}</p>
+            <p>Manage your team</p>
+          </div>
+        }
+        
+        @if (features.products) {
+          <div class="stat-card" routerLink="/products">
+            <h3>Products</h3>
+            <p class="count">{{ stats.products }}</p>
+            <p>View inventory</p>
+          </div>
+        }
+        
+        @if (features.orders) {
+          <div class="stat-card" routerLink="/orders">
+            <h3>Orders</h3>
+            <p class="count">{{ stats.orders }}</p>
+            <p>Track shipments</p>
+          </div>
+        }
+        
+        @if (features.vendors) {
+          <div class="stat-card" routerLink="/vendors">
+            <h3>Vendors</h3>
+            <p class="count">{{ stats.vendors }}</p>
+            <p>Supplier network</p>
+          </div>
+        }
+      </ng-container>
+      </div>
+      
+      <div class="recent-activity">
+        <h2>Recent Activity</h2>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-icon">📦</div>
+            <div class="activity-content">
+              <p>New shipment received from Mother Company</p>
+              <small>2 hours ago</small>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">🔄</div>
+            <div class="activity-content">
+              <p>Inventory levels updated</p>
+              <small>5 hours ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>

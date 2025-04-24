@@ -1,0 +1,73 @@
+<div class="order-details">
+    @if (isLoading) {
+      <app-loading-spinner />
+    } @else if (order) {
+      <div class="order-header">
+        <h1>Order #{{ order.orderNumber }}</h1>
+        <div class="order-meta">
+          <span class="status" [class]="getStatusClass(order.status)">
+            {{ order.status | titlecase }}
+          </span>
+          <span class="date">{{ order.date | date }}</span>
+        </div>
+      </div>
+  
+      <div class="order-content">
+        <div class="customer-section">
+          <h2>Customer Information</h2>
+          <div class="customer-details">
+            <p><strong>Name:</strong> {{ order.customer.name }}</p>
+            <p><strong>Email:</strong> {{ order.customer.email }}</p>
+          </div>
+        </div>
+  
+        <div class="items-section">
+          <h2>Order Items</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of order.items; track item.productId) {
+                <tr>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.price | currency }}</td>
+                  <td>{{ item.price * item.quantity | currency }}</td>
+                </tr>
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3"><strong>Total Amount:</strong></td>
+                <td><strong>{{ order.totalAmount | currency }}</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+  
+        @if (order.shippingAddress) {
+          <div class="shipping-section">
+            <h2>Shipping Address</h2>
+            <address>
+              {{ order.shippingAddress.street }}<br>
+              {{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.zip }}<br>
+              {{ order.shippingAddress.country }}
+            </address>
+          </div>
+        }
+  
+        @if (order.notes) {
+          <div class="notes-section">
+            <h2>Notes</h2>
+            <p>{{ order.notes }}</p>
+          </div>
+        }
+      </div>
+    }
+  </div>

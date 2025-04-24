@@ -1,0 +1,52 @@
+.employee-form {
+    width: 100%;
+    max-width: 800px; // Adjust as needed
+    margin: 0 auto;
+    padding: 20px;
+  
+    h1{
+        text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; // Uniform gap between rows
+    }
+  
+    .same-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr; // Two equal columns
+      gap: 16px; // Gap between columns
+      // Ensure child components take full width
+      app-labelled-component {
+        width: 100%;
+      }
+    }
+  
+    // For other form fields not in ssame-row
+    app-labelled-component {
+      width: 100%;
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  
+    // Responsive behavior - stack on small screens
+    @media (max-width: 600px) {
+      .same-row {
+        grid-template-columns: 1fr; // Single column on mobile
+      }
+    }
+  
+    // Button container styling
+    .buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end; 
+  
+      button {
+        min-width: 120px;
+      }
+    }
+  }
