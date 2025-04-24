@@ -5,6 +5,8 @@ import { ordersRoutes } from './features/orders/orders.routes';
 import { vendorsRoutes } from './features/vendors/vendors.routes';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { reportsRoutes } from './features/reports/reports.routes';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -13,5 +15,6 @@ export const routes: Routes = [
   ...productsRoutes,
   ...ordersRoutes,
   ...vendorsRoutes,
+  ...reportsRoutes,
   { path: '**', component: NotFoundComponent }
 ];

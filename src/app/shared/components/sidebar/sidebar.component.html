@@ -48,6 +48,14 @@
           </a>
         </li>
       }
+      @if (activeFeatures.reports) {
+        <li>
+          <a routerLink="/reports" routerLinkActive="active" (click)="isMobileView && toggleCollapse()">
+            <mat-icon>assessment</mat-icon>
+            <span>Reports</span>
+          </a>
+        </li>
+      }
     </ul>
   </ng-container>
   </nav>

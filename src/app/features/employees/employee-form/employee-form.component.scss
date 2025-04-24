@@ -1,24 +1,30 @@
+@import '../../../../assets/styles/theme';
+
 .employee-form {
     width: 100%;
-    max-width: 800px; // Adjust as needed
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px ;
+    box-sizing: border-box;
   
     h1{
-        text-align: center;
+      text-align: center;
+      margin-bottom: 24px;
     }
 
     form {
       display: flex;
       flex-direction: column;
       gap: 16px; // Uniform gap between rows
+      width: 100%;
     }
   
     .same-row {
       display: grid;
-      grid-template-columns: 1fr 1fr; // Two equal columns
+      grid-template-columns:  repeat(auto-fit, minmax(300px, 1fr));// 1fr 1fr; // Two equal columns
       gap: 16px; // Gap between columns
-      // Ensure child components take full width
+      width: 100%;
+    
       app-labelled-component {
         width: 100%;
       }
@@ -32,21 +38,44 @@
       }
     }
   
-    // Responsive behavior - stack on small screens
-    @media (max-width: 600px) {
-      .same-row {
-        grid-template-columns: 1fr; // Single column on mobile
-      }
-    }
-  
     // Button container styling
     .buttons {
       display: flex;
       gap: 12px;
       justify-content: flex-end; 
-  
+      flex-wrap: wrap; // Allow buttons to wrap on small screens
+      margin-top: 20px;
+
       button {
         min-width: 120px;
+        flex: 1; // Make buttons expand equally
+        max-width: 200px; // But not too wide
       }
     }
+
+      // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    .same-row {
+      grid-template-columns: 1fr; // Stack on smaller screens
+    }
+
+    .buttons {
+      justify-content: center; // Center buttons on mobile
+      
+      button {
+        min-width: 100%; // Full width buttons on mobile
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
   }

@@ -74,7 +74,7 @@ export class EmployeeFormComponent implements OnInit {
       street: [''],
       zip: [''],
       state: [''],
-      imageUrl: [''],
+      imageUrl: '',
       hireDate: ['', Validators.required]
     });
   }

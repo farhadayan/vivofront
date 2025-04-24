@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/theme';
+
 .order-details {
     padding: 2rem;
     max-width: 1200px;
@@ -14,7 +16,7 @@
   
     h1 {
       margin: 0;
-      color: var(--primary-color);
+      color: $primary-color;
     }
   
     .order-meta {
@@ -50,7 +52,7 @@
       }
   
       .date {
-        color: var(--text-color);
+        color: $text-color;
         opacity: 0.8;
       }
     }
@@ -74,7 +76,7 @@
   
     h2 {
       margin-top: 0;
-      color: var(--primary-color);
+      color: $primary-color;
       border-bottom: 1px solid #eee;
       padding-bottom: 0.5rem;
     }

@@ -42,7 +42,8 @@ export class ConfigService {
         employees: true,
         products: true,
         orders: true,
-        vendors: true
+        vendors: true,
+        reports:true
       },
       ui: {
         listView: {

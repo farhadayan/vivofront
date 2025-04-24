@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1><mat-icon>assessment</mat-icon> Reports Dashboard</h1>
+      <button mat-icon-button (click)="refreshData()" matTooltip="Refresh data">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  
+    @if (isLoading) {
+      <div class="skeleton-loading">
+        <div class="skeleton-card" *ngFor="let item of [1,2,3,4]"></div>
+      </div>
+    } @else {
+      <div class="stats-grid">
+        <div class="stat-card" (click)="navigateTo('analytics')">
+          <mat-icon>insert_chart</mat-icon>
+          <h3>Analytics</h3>
+          <p>View data trends and insights</p>
+          <span class="badge" *ngIf="unreadAnalytics > 0">
+            {{unreadAnalytics}} new
+          </span>
+        </div>
+  
+        <div class="stat-card" (click)="navigateTo('documents')">
+          <mat-icon>description</mat-icon>
+          <h3>Documents</h3>
+          <p>{{documentCount}} reports available</p>
+        </div>
+  
+        <div class="stat-card" (click)="navigateTo('statistics')">
+          <mat-icon>pie_chart</mat-icon>
+          <h3>Statistics</h3>
+          <p>Updated {{lastUpdated | timeAgo}}</p>
+          <div class="metric-group">
+            <div class="metric">
+              <span class="value">{{totalVisits | number}}</span>
+              <span class="label">Total Visits</span>
+            </div>
+            <div class="metric">
+              <span class="value" [class.positive]="conversionRate > 0.5" 
+                    [class.negative]="conversionRate <= 0.5">
+                {{conversionRate | percent:'1.1-1'}}
+              </span>
+              <span class="label">Conversion</span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="stat-card" (click)="navigateTo('exports')">
+          <mat-icon>download</mat-icon>
+          <h3>Exports</h3>
+          <p>Download report data</p>
+        </div>
+      </div>
+  
+      <div class="recent-reports">
+        <h2><mat-icon>history</mat-icon> Recent Reports</h2>
+        <mat-list>
+          <mat-list-item *ngFor="let report of recentReports">
+            <mat-icon matListItemIcon>
+              {{report.type === 'analytics' ? 'insert_chart' : 'description'}}
+            </mat-icon>
+            <h3 matListItemTitle>{{report.name}}</h3>
+            <p matListItemLine>Generated {{report.date | date:'mediumDate'}}</p>
+            <button mat-icon-button (click)="openReport(report); $event.stopPropagation()">
+              <mat-icon>open_in_new</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    }
+  </div>

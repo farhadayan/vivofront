@@ -1,3 +1,6 @@
+
+@import '../../../../assets/styles/theme';
+
 :host {
   display: block;
   height: 100vh;
@@ -9,7 +12,7 @@
 nav {
   height: 100%;
   width: 290px;
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   color: white;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -117,7 +120,7 @@ ul {
       }
 
       &.active {
-        background-color: var(--secondary-color);
+        background-color: $secondary-color;
         font-weight: 500;
       }
 

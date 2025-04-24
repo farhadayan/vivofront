@@ -15,6 +15,7 @@ export interface AppConfig {
       products: boolean;
       orders: boolean;
       vendors: boolean;
+      reports:boolean;
     };
 
     ui: {

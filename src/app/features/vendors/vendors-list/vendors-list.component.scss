@@ -4,7 +4,7 @@
   
   h1 {
     margin-bottom: 2rem;
-    color: var(--primary-color);
+    color: $primary-color;
   }
   
   .vendors-grid {
@@ -38,7 +38,7 @@
       object-fit: cover;
   
       &.placeholder {
-        background-color: var(--primary-color);
+        background-color: $primary-color;
         color: white;
         display: flex;
         justify-content: center;
@@ -53,12 +53,12 @@
   
       h3 {
         margin: 0 0 0.5rem 0;
-        color: var(--primary-color);
+        color: $primary-color;
       }
   
       p {
         margin: 0.25rem 0;
-        color: var(--text-color);
+        color: $text-color;
       }
     }
   }

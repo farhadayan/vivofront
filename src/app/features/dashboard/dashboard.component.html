@@ -38,6 +38,15 @@
             <p>Supplier network</p>
           </div>
         }
+
+        @if (features.reports) {
+          <div class="stat-card" routerLink="/reports">
+            <h3>Reports</h3>
+            <p class="count">{{ stats.reports }}</p>
+            <p>Generate Reports</p>
+          </div>
+        }
+        
       </ng-container>
       </div>
       
@@ -57,6 +66,19 @@
               <p>Inventory levels updated</p>
               <small>5 hours ago</small>
             </div>
+          </div>
+          <div class="recent-reports">
+            <h2><mat-icon>history</mat-icon> Recent Reports</h2>
+            <mat-list>
+              <mat-list-item *ngFor="let report of recentReports">
+                <mat-icon matListItemIcon>{{getReportIcon(report.type)}}</mat-icon>
+                <h3 matListItemTitle>{{report.name}}</h3>
+                <p matListItemLine>Generated {{report.date | date:'mediumDate'}}</p>
+                <button mat-icon-button (click)="openReport(report.id)">
+                  <mat-icon>open_in_new</mat-icon>
+                </button>
+              </mat-list-item>
+            </mat-list>
           </div>
         </div>
       </div>

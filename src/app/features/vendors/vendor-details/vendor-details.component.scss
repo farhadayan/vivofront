@@ -28,7 +28,7 @@
     }
   
     &.placeholder {
-      background-color: var(--primary-color);
+      background-color: $primary-color;
       color: white;
       display: flex;
       justify-content: center;
@@ -43,12 +43,12 @@
   
     h1 {
       margin-top: 0;
-      color: var(--primary-color);
+      color: $primary-color;
     }
   
     .contact-person {
       font-size: 1.2rem;
-      color: var(--text-color);
+      color: $text-color;
       margin: 0.5rem 0;
     }
   
@@ -61,7 +61,7 @@
   
         i {
           font-size: 1.2rem;
-          color: var(--primary-color);
+          color: $primary-color;
         }
       }
     }
@@ -85,7 +85,7 @@
   
     h2 {
       margin-top: 0;
-      color: var(--primary-color);
+      color: $primary-color;
       border-bottom: 1px solid #eee;
       padding-bottom: 0.5rem;
     }

@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/theme';
+
 .orders-container {
     padding: 2rem;
   }
@@ -10,13 +12,13 @@
   
     h1 {
       margin: 0;
-      color: var(--primary-color);
+      color: $primary-color;
     }
   }
   
   .new-order-button {
     padding: 0.75rem 1.5rem;
-    background-color: var(--primary-color);
+    background-color: $primary-color;
     color: white;
     border: none;
     border-radius: 4px;
@@ -25,7 +27,7 @@
     transition: background-color 0.3s;
   
     &:hover {
-      background-color: var(--secondary-color);
+      background-color: $secondary-color;
     }
   }
   
@@ -45,7 +47,7 @@
     }
   
     th {
-      background-color: var(--primary-color);
+      background-color: $primary-color;
       color: white;
       font-weight: bold;
     }
@@ -89,7 +91,7 @@
   
   .view-button {
     padding: 0.25rem 0.5rem;
-    background-color: var(--primary-color);
+    background-color: $primary-color;
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -97,6 +99,6 @@
     transition: background-color 0.3s;
   
     &:hover {
-      background-color: var(--secondary-color);
+      background-color: $secondary-color;
     }
   }

@@ -1,5 +1,4 @@
-//@use '@angular/material' as mat;
-
+@import '../../../../assets/styles/theme';
 
 .employee-list-container {
   background-color: grey;
@@ -9,14 +8,12 @@
     color: bisque;
   }
 
-
-
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 1.5rem;
   height: 100%;
-  position: relative;
+  //position: relative;
 
   .loading-overlay {
     position: absolute;
