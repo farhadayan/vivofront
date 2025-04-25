@@ -25,11 +25,13 @@
       Add Employee
     </button>
     
-    <mat-form-field appearance="outline" floatLabel="always">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Search employees">
+    <div class="search-wrapper">
+      <app-search (search)="applyFilter($event)" 
+        (searchChange)="applyFilter($event)"
+        placeholder="Search...">
+      </app-search>
       <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+    </div>
   </div>
 
   <!-- Employee Table -->

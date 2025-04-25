@@ -1,5 +1,5 @@
 {
-    "appName": "Inventory Pro",
+    "appName": "Inventory Manager",
     "logoUrl": "assets/images/logo.png",
     
     "theme": {
@@ -14,7 +14,8 @@
       "employees": true,
       "products": true,
       "orders": true,
-      "vendors": true
+      "vendors": true,
+      "reports":true
     },
     "ui": {
       "listView": {

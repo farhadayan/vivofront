@@ -1,11 +1,12 @@
 .app-container {
   display: flex;
-  //min-height: 99vh;
+  min-height: 98vh;
 }
 
 .main-content {
   flex-grow: 1;
-  transition: margin-left 0.3s ease;
+  height: fit-content;
+  //transition: margin-left 0.3s ease;
  // padding: 2rem;
   
   &.sidebar-collapsed {

@@ -1,21 +1,25 @@
+@use '../../../../assets/styles/search' as search;
 @import '../../../../assets/styles/theme';
 
 .orders-container {
-    padding: 2rem;
-  }
-  
-  .orders-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  
-    h1 {
-      margin: 0;
-      color: $primary-color;
+    
+    background-color: grey;
+
+    .toolbar {
+      @include search.search-toolbar;
+    
+      .search-wrapper {
+        @include search.search-wrapper-styles;
+        
+        // Optional responsive adjustment
+        @media (max-width: 768px) {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 12px;
+        }
+      }
     }
-  }
-  
+     
   .new-order-button {
     padding: 0.75rem 1.5rem;
     background-color: $primary-color;
@@ -37,7 +41,7 @@
   
   table {
     width: 100%;
-    border-collapse: collapse;
+    // border-collapse: collapse;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
     th, td {
@@ -102,3 +106,4 @@
       background-color: $secondary-color;
     }
   }
+}

@@ -1,5 +1,4 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, ViewChild } from '@angular/core';
-import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../../core/models/employee.model';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,19 +10,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatInputModule} from '@angular/material/input';
 import { ConfigService } from '../../../core/config/config.service';
-import { Subject, takeUntil } from 'rxjs';
-
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 import { EmployeeState } from '../../states/employee.state';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { SearchComponent } from '../../../shared/components/search/search.component';
 
 @Component({
   selector: 'app-employees-list',
@@ -45,8 +42,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatMenuModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    SearchComponent
   ]
 })
 export class EmployeeListComponent implements OnInit, AfterViewInit {
@@ -62,6 +59,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   selectedRow: Employee | undefined;
   dataSource = new MatTableDataSource<Employee>([]);
   private router = inject(Router);
+  
+  private searchSubject = new Subject<string>();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   isLoading = false;
@@ -73,7 +73,8 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     private configService: ConfigService,
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    
   ) {}
 
   ngOnInit(): void {
@@ -171,14 +172,23 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/employees', id]);
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
+  
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  //working fine
+  // applyFilter(event: Event): void {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
   getImageSizeClass(): string {
     return `image-${this.configService.getConfig().ui.listView.imageSize}`;

@@ -30,8 +30,8 @@ export class ConfigService {
       appName: 'Inventory Manager',
       logoUrl: 'assets/images/logo.png',
       theme: {
-        primaryColor: '#3f51b5',
-        secondaryColor: '#ff4081',
+        primaryColor: '#7e8191',
+        secondaryColor: '#65567a',
         textColor: '#333333',
         backgroundColor: '#f5f5f5'
       },

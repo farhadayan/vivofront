@@ -5,3 +5,9 @@
 @import './assets/styles/mixins';
 @import './assets/styles/theme';
 
+:root {
+    --search-width: 240px;
+    --search-padding: 12px 16px;
+    --search-border: 1px solid rgba(0, 0, 0, 0.12);
+    --search-focus-color: #212430;
+  }

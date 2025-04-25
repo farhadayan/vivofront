@@ -1,12 +1,15 @@
 <div class="search-container">
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      (input)="onSearch()"
-      placeholder="Search..."
-      class="search-input"
-    />
-    <button (click)="onSearch()" class="search-button">
-      <i class="search-icon">🔍</i>
+  <input matInput
+  type="text"
+  [(ngModel)]="searchTerm"
+  (input)="onInputChange($event)"
+  (keyup.enter)="onSearch()"
+  [placeholder]="placeholder"
+  class="search-input" />
+
+  @if (searchTerm && showClearButton) {
+    <button (click)="clearSearch()" mat-icon-button>
+      <mat-icon>close</mat-icon>
     </button>
-  </div>
+  }
+</div>

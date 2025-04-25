@@ -1,44 +1,67 @@
 <div class="orders-container">
-    <div class="orders-header">
-      <h1>Orders</h1>
-      <app-search (search)="onSearch($event)"></app-search>
-      <button class="new-order-button" routerLink="/orders/new">+ New Order</button>
+  <!-- Loading Indicator -->
+  @if (isLoading) {
+    <div class="loading-overlay">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-  
-    @if (isLoading) {
-      <app-loading-spinner />
-    } @else {
-      <div class="orders-table">
-        <table>
-          <thead>
+  }
+  <!-- Error Message -->
+  @if (error) {
+    <div class="error-message mat-elevation-z2">
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ error }}</span>
+      <button mat-icon-button (click)="error = null">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  }
+  <!-- Toolbar -->
+  <div class="toolbar mat-elevation-z2">
+    <button mat-raised-button
+      (click)="addEditOrder(false)">
+      <mat-icon>add</mat-icon>
+      New Order
+    </button>
+    
+    <div class="search-wrapper">
+      <app-search (search)="applyFilter($event)" 
+        (searchChange)="applyFilter($event)"
+        placeholder="Search...">
+      </app-search>
+      <mat-icon matSuffix>search</mat-icon>
+    </div>
+  </div>
+
+  <div class="orders-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of filteredOrders; track order.id) {
             <tr>
-              <th>Order #</th>
-              <th>Date</th>
-              <th>Customer</th>
-              <th>Status</th>
-              <th>Amount</th>
-              <th>Actions</th>
+              <td>{{ order.orderNumber }}</td>
+              <td>{{ order.date | date }}</td>
+              <td>{{ order.customer.name }}</td>
+              <td>
+                <span [class]="getStatusClass(order.status)">
+                  {{ order.status | titlecase }}
+                </span>
+              </td>
+              <td>{{ order.totalAmount | currency }}</td>
+              <td>
+                <a [routerLink]="['/orders', order.id]" class="view-button">View</a>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            @for (order of filteredOrders; track order.id) {
-              <tr>
-                <td>{{ order.orderNumber }}</td>
-                <td>{{ order.date | date }}</td>
-                <td>{{ order.customer.name }}</td>
-                <td>
-                  <span [class]="getStatusClass(order.status)">
-                    {{ order.status | titlecase }}
-                  </span>
-                </td>
-                <td>{{ order.totalAmount | currency }}</td>
-                <td>
-                  <a [routerLink]="['/orders', order.id]" class="view-button">View</a>
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
+          }
+        </tbody>
+      </table>
       </div>
-    }
   </div>
