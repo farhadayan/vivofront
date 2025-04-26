@@ -3,9 +3,24 @@
   <h1>{{dialogData.isEditMode?'Update':'Create'}} Employee</h1>
   <form [formGroup]="employeeForm">
     <app-labelled-component label="Image">
-      <mat-form-field appearance="outline" >
-        <input type="text" matInput formControlName="imageUrl">
-      </mat-form-field>
+      <div class="image-upload-wrapper">
+        <app-image-upload 
+          (imageUploaded)="handleImageUpload($event)"
+          (uploadCancelled)="handleUploadCancelled()">
+        </app-image-upload>
+
+        <div *ngIf="isUploading" class="upload-status">
+          <p>Status: {{ uploadStatus }}</p>
+          <progress [value]="uploadProgress" max="100"></progress>
+          <span>{{ uploadProgress }}%</span>
+        </div>
+
+        <div *ngIf="uploadStatus && !isUploading" 
+             [class.success]="uploadStatus === 'Upload successful!'"
+             [class.error]="uploadStatus.includes('failed')">
+          {{ uploadStatus }}
+        </div>
+      </div>
     </app-labelled-component>
 
     <div class="same-row">

@@ -1,0 +1,34 @@
+<div class="image-upload-container">
+  <input type="file" 
+         accept="image/*" 
+         (change)="onFileSelected($event)" 
+         #fileInput
+         hidden>
+  
+  <button mat-stroked-button 
+          type="button" 
+          (click)="fileInput.click()"
+          class="upload-button">
+    <mat-icon>upload</mat-icon>
+    Choose Image
+  </button>
+
+  <div *ngIf="previewUrl" class="image-preview">
+    <img [src]="previewUrl" alt="Preview">
+  </div>
+
+  <div class="upload-actions">
+    <button mat-stroked-button 
+            color="primary" 
+            (click)="uploadImage()" 
+            [disabled]="!selectedFile">
+      Upload
+    </button>
+    <button mat-stroked-button 
+            color="warn" 
+            (click)="cancelUpload()" 
+            *ngIf="selectedFile">
+      Cancel
+    </button>
+  </div>
+</div>

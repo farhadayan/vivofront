@@ -41,16 +41,7 @@
   .toolbar {
     @include search.search-toolbar;
 
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-    // padding: 12px;
-    // border-radius: 4px;
-    // background-color: white;
-    // margin-top: 4px;
-
     .search-wrapper {
-
       @include search.search-wrapper-styles;
 
        // Responsive adjustment
@@ -59,22 +50,7 @@
         margin-left: 0;
         margin-top: 12px;
       }
-    //   position: relative;
-    //   display: flex;
-    //   align-items: center;
-    //   margin-left: auto; /* Pushes search to the right */
-    //   width: 240px;
-  
-    //   app-search {
-    //     width: 100%;
-    //   }
-  
-    //   mat-icon[matSuffix] {
-    //     position: absolute;
-    //     right: 8px;
-    //     color: rgba(0, 0, 0, 0.54);
-    //     cursor: pointer;
-    //   }
+
      }
   }
 
